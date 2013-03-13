@@ -6,14 +6,15 @@ PATH
 GEM
   remote: http://rubygems.org/
   specs:
-    bluecloth (2.1.0)
-    minitest (2.2.2)
-    rainbow (1.1.4)
-    rake (0.9.2)
-    simplecov (0.4.2)
-      simplecov-html (~> 0.4.4)
-    simplecov-html (0.4.5)
-    yard (0.7.1)
+    bluecloth (2.2.0)
+    minitest (4.6.2)
+    multi_json (1.6.1)
+    rake (10.0.3)
+    simplecov (0.7.1)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.7.1)
+    simplecov-html (0.7.1)
+    yard (0.8.5.2)
 
 PLATFORMS
   ruby
@@ -23,7 +24,6 @@ DEPENDENCIES
   bundler (>= 1.0.0)
   minitest
   progressbar!
-  rainbow
   rake
   simplecov (>= 0.3.5)
   yard

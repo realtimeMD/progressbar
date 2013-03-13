@@ -21,3 +21,4 @@ pkg
 
 ## PROJECT::SPECIFIC
 /.rake_t_cache
+.idea

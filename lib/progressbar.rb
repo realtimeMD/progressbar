@@ -17,7 +17,7 @@ class ProgressBar
     @total = total
     @out = out
     @terminal_width = 80
-    @bar_mark = ".".color(:green)
+    @bar_mark = "."
     @current = 0
     @previous = 0
     @finished_p = false
@@ -45,7 +45,7 @@ private
   def fmt_bar
     bar_width = do_percentage * @terminal_width / 100
     sprintf("|%s%s|",
-            @bar_mark * bar_width,
+            "\x1B[32m" + @bar_mark * bar_width + "\x1B[32m\x1B[37m",
             " " *  (@terminal_width - bar_width))
   end
 
