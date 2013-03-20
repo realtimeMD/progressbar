@@ -1,4 +1,5 @@
 ## ProgressBar: A Text Progress Bar Library for Ruby
+
 [![Build Status](https://travis-ci.org/market76/progressbar.png?branch=master)](https://travis-ci.org/market76/progressbar)
 
 Ruby/ProgressBar is a text progress bar library for Ruby.
