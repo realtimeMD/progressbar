@@ -10,14 +10,14 @@
 #
 
 class ProgressBar
-  VERSION = "0.20.0"
+  VERSION = '0.20.0'
 
   def initialize (title, total, out = STDERR)
     @title = title
     @total = total
     @out = out
     @terminal_width = 80
-    @bar_mark = "."
+    @bar_mark = '.'
     @current = 0
     @previous = 0
     @finished_p = false
@@ -44,9 +44,9 @@ private
 
   def fmt_bar
     bar_width = do_percentage * @terminal_width / 100
-    sprintf("|%s%s|",
+    sprintf('|%s%s|',
             "\x1B[32m" + @bar_mark * bar_width + "\x1B[32m\x1B[37m",
-            " " *  (@terminal_width - bar_width))
+            ' ' *  (@terminal_width - bar_width))
   end
 
   def fmt_percentage
@@ -63,31 +63,31 @@ private
 
   def fmt_stat_for_file_transfer
     if @finished_p then
-      sprintf("%s %s %s", bytes, transfer_rate, elapsed)
+      sprintf('%s %s %s', bytes, transfer_rate, elapsed)
     else
-      sprintf("%s %s %s", bytes, transfer_rate, eta)
+      sprintf('%s %s %s', bytes, transfer_rate, eta)
     end
   end
 
   def fmt_title
-    @title[0,(@title_width - 1)] + ":"
+    @title[0,(@title_width - 1)] + ':'
   end
 
   def convert_bytes (bytes)
     if bytes < 1024
-      sprintf("%6dB", bytes)
+      sprintf('%6dB', bytes)
     elsif bytes < 1024 * 1000 # 1000kb
-      sprintf("%5.1fKB", bytes.to_f / 1024)
+      sprintf('%5.1fKB', bytes.to_f / 1024)
     elsif bytes < 1024 * 1024 * 1000  # 1000mb
-      sprintf("%5.1fMB", bytes.to_f / 1024 / 1024)
+      sprintf('%5.1fMB', bytes.to_f / 1024 / 1024)
     else
-      sprintf("%5.1fGB", bytes.to_f / 1024 / 1024 / 1024)
+      sprintf('%5.1fGB', bytes.to_f / 1024 / 1024 / 1024)
     end
   end
 
   def transfer_rate
     bytes_per_second = @current.to_f / (Time.now - @start_time)
-    sprintf("%s/s", convert_bytes(bytes_per_second))
+    sprintf('%s/s', convert_bytes(bytes_per_second))
   end
 
   def bytes
@@ -99,17 +99,17 @@ private
     sec = t % 60
     min  = (t / 60) % 60
     hour = t / 3600
-    sprintf("% 3d:%02d:%02d", hour, min, sec);
+    sprintf('% 3d:%02d:%02d', hour, min, sec);
   end
 
   # ETA stands for Estimated Time of Arrival.
   def eta
     if @current == 0
-      "ETA:  --:--:--"
+      'ETA:  --:--:--'
     else
       elapsed = Time.now - @start_time
       eta = elapsed * @total / @current - elapsed;
-      sprintf("ETA: %s", format_time(eta))
+      sprintf('ETA: %s', format_time(eta))
     end
   end
 
@@ -135,15 +135,15 @@ private
 
     if @eta_throughput && @eta_throughput > 0
       eta = (@total - @current) / @eta_throughput;
-      sprintf("ETA: %s", format_time(eta))
+      sprintf('ETA: %s', format_time(eta))
     else
-      "ETA:  --:--:--"
+      'ETA:  --:--:--'
     end
   end
 
   def elapsed
     elapsed = Time.now - @start_time
-    sprintf("Time: %s", format_time(elapsed))
+    sprintf('Time: %s', format_time(elapsed))
   end
 
   def eol
@@ -179,7 +179,7 @@ private
 
   def show
     arguments = @format_arguments.map {|method|
-      method = sprintf("fmt_%s", method)
+      method = sprintf('fmt_%s', method)
       send(method)
     }
     line = sprintf(@format, *arguments)
@@ -218,7 +218,7 @@ public
 
   def clear
     @out.print "\r"
-    @out.print(" " * (get_term_width - 1))
+    @out.print(' ' * (get_term_width - 1))
     @out.print "\r"
   end
 
