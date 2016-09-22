@@ -21,7 +21,7 @@ class ProgressBar
     @current = 0
     @previous = 0
     @finished_p = false
-    @start_time = Time.now
+    @start_time = ::Time.now
     @previous_time = @start_time
     @title_width = 14
     @format = "%-#{@title_width}s %3d%% %s %s"
@@ -86,7 +86,7 @@ private
   end
 
   def transfer_rate
-    bytes_per_second = @current.to_f / (Time.now - @start_time)
+    bytes_per_second = @current.to_f / (::Time.now - @start_time)
     sprintf('%s/s', convert_bytes(bytes_per_second))
   end
 
@@ -107,7 +107,7 @@ private
     if @current == 0
       'ETA:  --:--:--'
     else
-      elapsed = Time.now - @start_time
+      elapsed = ::Time.now - @start_time
       eta = elapsed * @total / @current - elapsed;
       sprintf('ETA: %s', format_time(eta))
     end
@@ -115,7 +115,7 @@ private
 
   # Compute ETA with running average (better suited to long running tasks)
   def eta_running_average
-    now = Time.now
+    now = ::Time.now
 
     # update throughput running average
     if @total > 0 && @eta_previous && @eta_previous_time
@@ -142,7 +142,7 @@ private
   end
 
   def elapsed
-    elapsed = Time.now - @start_time
+    elapsed = ::Time.now - @start_time
     sprintf('Time: %s', format_time(elapsed))
   end
 
@@ -195,7 +195,7 @@ private
       @terminal_width += width - line.length + 1
       show
     end
-    @previous_time = Time.now
+    @previous_time = ::Time.now
   end
 
   def show_if_needed
@@ -209,7 +209,7 @@ private
 
     # Use "!=" instead of ">" to support negative changes
     if cur_percentage != prev_percentage ||
-        Time.now - @previous_time >= 1 || @finished_p
+        ::Time.now - @previous_time >= 1 || @finished_p
       show
     end
   end
