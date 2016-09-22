@@ -10,7 +10,7 @@ class ProgressBarTest < Test::Unit::TestCase
 
   def test_bytes
     total = 1024 * 1024
-    pbar = do_make_progress_bar("test(bytes)", total)
+    pbar = do_make_progress_bar('test(bytes)', total)
     pbar.file_transfer_mode
     0.step(total, 2**14) {|x|
       pbar.set(x)
@@ -21,7 +21,7 @@ class ProgressBarTest < Test::Unit::TestCase
 
   def test_clear
     total = 100
-    pbar = do_make_progress_bar("test(clear)", total)
+    pbar = do_make_progress_bar('test(clear)', total)
     total.times {
       sleep(SleepUnit)
       pbar.inc
@@ -32,7 +32,7 @@ class ProgressBarTest < Test::Unit::TestCase
 
   def test_halt
     total = 100
-    pbar = do_make_progress_bar("test(halt)", total)
+    pbar = do_make_progress_bar('test(halt)', total)
     (total / 2).times {
       sleep(SleepUnit)
       pbar.inc
@@ -42,7 +42,7 @@ class ProgressBarTest < Test::Unit::TestCase
 
   def test_inc
     total = 100
-    pbar = do_make_progress_bar("test(inc)", total)
+    pbar = do_make_progress_bar('test(inc)', total)
     total.times {
       sleep(SleepUnit)
       pbar.inc
@@ -51,9 +51,9 @@ class ProgressBarTest < Test::Unit::TestCase
   end
 
   def test_inc_x
-    total = File.size("lib/progressbar.rb")
-    pbar = do_make_progress_bar("test(inc(x))", total)
-    File.new("lib/progressbar.rb").each {|line|
+    total = File.size('lib/progressbar.rb')
+    pbar = do_make_progress_bar('test(inc(x))', total)
+    File.new('lib/progressbar.rb').each {|line|
       sleep(SleepUnit)
       pbar.inc(line.length)
     }
@@ -62,7 +62,7 @@ class ProgressBarTest < Test::Unit::TestCase
 
   def test_invalid_set
     total = 100
-    pbar = do_make_progress_bar("test(invalid set)", total)
+    pbar = do_make_progress_bar('test(invalid set)', total)
     begin
       pbar.set(200)
     rescue RuntimeError => e
@@ -72,7 +72,7 @@ class ProgressBarTest < Test::Unit::TestCase
 
   def test_set
     total = 1000
-    pbar = do_make_progress_bar("test(set)", total)
+    pbar = do_make_progress_bar('test(set)', total)
     (1..total).find_all {|x| x % 10 == 0}.each {|x|
       sleep(SleepUnit)
       pbar.set(x)
@@ -82,7 +82,7 @@ class ProgressBarTest < Test::Unit::TestCase
 
   def test_slow
     total = 100000
-    pbar = do_make_progress_bar("test(slow)", total)
+    pbar = do_make_progress_bar('test(slow)', total)
     0.step(500, 1) {|x|
       pbar.set(x)
       sleep(SleepUnit)
@@ -92,13 +92,13 @@ class ProgressBarTest < Test::Unit::TestCase
 
   def test_total_zero
     total = 0
-    pbar = do_make_progress_bar("test(total=0)", total)
+    pbar = do_make_progress_bar('test(total=0)', total)
     pbar.finish
   end
 
   def test_custom_bar_mark
     total = 100
-    pbar = do_make_progress_bar("test(custom)", total)
+    pbar = do_make_progress_bar('test(custom)', total)
     pbar.bar_mark = '='
     total.times {
       sleep(SleepUnit)
@@ -106,10 +106,10 @@ class ProgressBarTest < Test::Unit::TestCase
     }
     pbar.finish
   end
-  
+
   def test_with_block
     total = 100
-    do_make_progress_bar("test(block)", total) do |pbar|
+    do_make_progress_bar('test(block)', total) do |pbar|
       total.times {
         sleep(SleepUnit)
         pbar.inc
