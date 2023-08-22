@@ -10,7 +10,7 @@ and estimated remaining time.
 In your Gemfile, add the following line:
 
 ```ruby
-gem 'progressbar', git: 'git@github.com:market76/progressbar.git'
+gem 'progressbar', git: 'https://github.com/realtimeMD/progressbar.git', branch: 'master'
 ```
 
 ### Examples
